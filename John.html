@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Omondi Ragot — Electrical Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c0f;
+    --bg2: #0f1318;
+    --panel: #131820;
+    --panel2: #1a2130;
+    --accent: #00e5ff;
+    --accent2: #f97316;
+    --accent3: #22c55e;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --border: rgba(0,229,255,0.15);
+    --glow: rgba(0,229,255,0.08);
+    --mono: 'Share Tech Mono', monospace;
+    --display: 'Bebas Neue', sans-serif;
+    --body: 'Mulish', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform .1s, width .2s, height .2s, background .2s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: transform .18s ease, width .3s, height .3s, opacity .3s;
+    opacity: .5;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* Grid overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,12,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: .95rem;
+    color: var(--accent);
+    letter-spacing: .1em;
+  }
+  .nav-logo span { color: var(--muted); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: .8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: .1em;
+    transition: color .2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width .3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-ring {
+    position: absolute;
+    right: -10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,229,255,0.07);
+    animation: rotate 40s linear infinite;
+  }
+  .hero-bg-ring::before {
+    content: '';
+    position: absolute;
+    top: 10%; left: 10%;
+    right: 10%; bottom: 10%;
+    border-radius: 50%;
+    border: 1px solid rgba(249,115,22,0.07);
+    animation: rotate 25s linear infinite reverse;
+  }
+  @keyframes rotate { from { transform: translateY(-50%) rotate(0); } to { transform: translateY(-50%) rotate(360deg); } }
+
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--accent);
+    letter-spacing: .2em;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--accent);
+  }
+  .blink { animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: .95;
+    letter-spacing: .02em;
+    margin-bottom: 1rem;
+  }
+  h1 .accent { color: var(--accent); }
+  h1 .sub-name {
+    display: block;
+    font-size: .5em;
+    color: var(--muted);
+    letter-spacing: .1em;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    max-width: 520px;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .85rem 2rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: .82rem;
+    letter-spacing: .1em;
+    text-decoration: none;
+    font-weight: 700;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+    transition: background .2s, transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,229,255,0.3);
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .85rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: .82rem;
+    letter-spacing: .1em;
+    text-decoration: none;
+    transition: border-color .2s, color .2s, background .2s;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  }
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--glow);
+  }
+
+  /* IMAGE PLACEHOLDER */
+  .hero-image-area {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+  .profile-frame {
+    width: 260px; height: 320px;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+  .profile-frame::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--accent), transparent, var(--accent2));
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    z-index: -1;
+  }
+  .profile-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    background: var(--panel);
+  }
+  .img-placeholder {
+    width: 100%; height: 100%;
+    background: var(--panel);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .7rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: .75rem;
+    letter-spacing: .1em;
+    border: 1px solid var(--border);
+  }
+  .img-placeholder svg { opacity: .3; }
+  .profile-badge {
+    position: absolute;
+    bottom: -16px; right: -16px;
+    background: var(--accent2);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: .65rem;
+    padding: .5rem .9rem;
+    letter-spacing: .1em;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+  }
+
+  /* SECTION BASE */
+  section { position: relative; z-index: 1; padding: 7rem 3rem; }
+  .section-tag {
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--accent);
+    letter-spacing: .25em;
+    margin-bottom: .8rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .section-tag::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    letter-spacing: .04em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--panel);
+    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: .75rem;
+    letter-spacing: .1em;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-img-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,255,0.05), transparent 60%);
+  }
+  .scan-line {
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: .4;
+    animation: scan 3s ease-in-out infinite;
+  }
+  @keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
+  .about-corner {
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: var(--accent);
+    border-style: solid;
+  }
+  .about-corner.tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .about-corner.tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+  .about-corner.bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+  .about-corner.br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+  .about-text h3 {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    letter-spacing: .04em;
+    margin-bottom: 1.2rem;
+    color: var(--accent);
+  }
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+  }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .stat-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.2rem;
+    text-align: center;
+    transition: border-color .3s, background .3s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+  .stat-box:hover {
+    border-color: var(--accent);
+    background: var(--glow);
+  }
+  .stat-num {
+    font-family: var(--display);
+    font-size: 2.2rem;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: .68rem;
+    color: var(--muted);
+    letter-spacing: .1em;
+  }
+
+  /* SKILLS */
+  .skills-section { background: var(--bg2); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .skill-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    transition: border-color .3s, transform .3s, box-shadow .3s;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+    overflow: hidden;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--accent);
+    transition: height .3s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,229,255,0.1); }
+  .skill-card:hover::before { height: 100%; }
+  .skill-card-icon {
+    width: 44px; height: 44px;
+    background: var(--glow);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+  }
+  .skill-card h4 {
+    font-family: var(--mono);
+    font-size: .85rem;
+    color: var(--accent);
+    letter-spacing: .1em;
+    margin-bottom: 1rem;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .pill {
+    font-family: var(--mono);
+    font-size: .68rem;
+    padding: .3rem .7rem;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: .05em;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .pill:hover { background: var(--glow); color: var(--accent); border-color: var(--accent); }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+  .project-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: border-color .3s, transform .3s, box-shadow .3s;
+    position: relative;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,229,255,0.12);
+  }
+  .project-img {
+    width: 100%;
+    height: 200px;
+    background: var(--panel2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .project-img-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .7rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .1em;
+    width: 100%; height: 100%;
+    position: relative;
+  }
+  .project-img-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,255,0.04), transparent);
+  }
+  .project-img-number {
+    position: absolute;
+    bottom: 12px; right: 16px;
+    font-family: var(--display);
+    font-size: 4rem;
+    color: rgba(0,229,255,0.06);
+    line-height: 1;
+  }
+  .project-img-tag {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: .62rem;
+    padding: .25rem .6rem;
+    letter-spacing: .1em;
+    font-weight: 700;
+  }
+  .project-body { padding: 1.8rem; }
+  .project-body h3 {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    letter-spacing: .04em;
+    margin-bottom: .8rem;
+  }
+  .project-body p {
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .project-tag {
+    font-family: var(--mono);
+    font-size: .65rem;
+    padding: .2rem .6rem;
+    border: 1px solid rgba(249,115,22,0.25);
+    color: var(--accent2);
+    letter-spacing: .05em;
+  }
+
+  /* INVOLVEMENT */
+  .involvement-section { background: var(--bg2); }
+  .involvement-list { margin-top: 4rem; display: flex; flex-direction: column; gap: 1.2rem; }
+  .involvement-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    transition: border-color .3s, background .3s, transform .3s;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+    cursor: default;
+  }
+  .involvement-item:hover {
+    border-color: var(--accent);
+    background: var(--glow);
+    transform: translateX(8px);
+  }
+  .inv-num {
+    font-family: var(--display);
+    font-size: 2.5rem;
+    color: rgba(0,229,255,0.12);
+    min-width: 60px;
+    line-height: 1;
+  }
+  .inv-body h4 {
+    font-family: var(--mono);
+    font-size: .9rem;
+    color: var(--text);
+    margin-bottom: .3rem;
+    letter-spacing: .05em;
+  }
+  .inv-body p { color: var(--muted); font-size: .83rem; font-weight: 300; }
+  .inv-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent3);
+    margin-left: auto;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px var(--accent3);
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+  .contact-info h3 {
+    font-family: var(--display);
+    font-size: 2rem;
+    letter-spacing: .04em;
+    margin-bottom: 1rem;
+  }
+  .contact-info p {
+    color: var(--muted);
+    line-height: 1.85;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: .9rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: .82rem;
+    letter-spacing: .05em;
+    padding: .9rem 1.2rem;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    transition: border-color .3s, color .3s, background .3s, transform .3s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--glow);
+    transform: translateX(6px);
+  }
+  .contact-link-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+  .contact-form-area { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: .5rem; }
+  .form-group label {
+    font-family: var(--mono);
+    font-size: .7rem;
+    color: var(--muted);
+    letter-spacing: .15em;
+  }
+  .form-group input, .form-group textarea {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: .88rem;
+    padding: .85rem 1rem;
+    outline: none;
+    transition: border-color .3s, background .3s;
+    resize: vertical;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--accent);
+    background: var(--glow);
+  }
+  .form-group textarea { min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--muted);
+    letter-spacing: .08em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.5rem; padding-top: 5rem; flex-direction: column; justify-content: center; gap: 3rem; }
+    .hero-image-area { position: static; transform: none; display: flex; justify-content: center; }
+    .profile-frame { width: 200px; height: 240px; }
+    section { padding: 5rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: repeat(3, 1fr); }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 3rem; }
+    .hero-btns { flex-direction: column; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+  }
+  #Johndp{
+    background-image: url('dp.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%; 
+    height: 300px;">
+  }
+  #engineer{
+       background-image: url('imag.jpeg');
+    background-size: 100%;
+    backgrouepeat: no-repeat;
+    width: 100%; 
+    height: 300px;">nd-position: center;
+    
+  }
+
+
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">  ENGINEER<span> - JR SNR</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#projects">PROJECTS</a></li>
+    <li><a href="#involvement">INVOLVEMENT</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-ring"></div>
+  <div class="hero-content reveal">
+    <div class="hero-tag">ELECTRICAL ENGINEER IN TRAINING <span class="blink"></span></div>
+    <h1 style="font-size: 90px;">JOHN<br><span class="accent">RAGOT</span><span class="sub-name"></span></h1>
+    <p class="hero-desc">
+      Building intelligent systems at the intersection of control engineering, embedded systems, and renewable energy. 
+      Passionate about engineering solutions that move society forward — from smart cities to sustainable infrastructure.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">VIEW PROJECTS →</a>
+      <a href="#contact" class="btn-outline">GET IN TOUCH</a>
+    </div>
+  </div>
+
+  <div class="hero-image-area reveal">
+    <div class="profile-frame">
+      <!-- REPLACE src BELOW WITH YOUR PHOTO PATH -->
+      <div class="img-placeholder" id="Johndp" >
+      
+       
+      </div>
+    </div>
+    <div class="profile-badge">TUM · BSc EEE</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">01 / ABOUT ME</div>
+  <h2>THE ENGINEER <span style="color:var(--accent)">BEHIND</span> THE CODE</h2>
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <div class="about-img-frame" style="height:400px; width: 300px;" id="engineer">
+        <div class="scan-line"></div>
+        <div class="about-corner tl"></div>
+        <div class="about-corner tr"></div>
+        <div class="about-corner bl"></div>
+        <div class="about-corner br"></div>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+     
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <h3>WIRING AMBITION<br>INTO REALITY</h3>
+      <p>
+        I'm John — a third-year Electrical and Electronic Engineering student at the Technical University of Mombasa, 
+        driven by a deep curiosity for how systems think and respond. Whether it's designing a voltage-sensing circuit 
+        or programming an Arduino for smart traffic control, I bring precision and creativity to every build.
+      </p>
+      <p>
+        My interests span control systems, renewable energy integration, robotics, and AI-powered automation. 
+        I believe engineering's highest calling is making life more sustainable, more intelligent, and more equitable — 
+        and I'm committed to that mission from the ground up.
+      </p>
+      <p>
+        Beyond the lab, I'm a community builder. As an IEEE YESIST12 Ambassador and member of the Robotics Club and 
+        Enactus, I actively mentor peers, foster innovation culture, and connect young engineers to global platforms.
+      </p>
+      <div class="stat-row">
+        <div class="stat-box">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">PROJECTS</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">5+</span>
+          <span class="stat-label">TOOLS</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">2 YEARS</span>
+          <span class="stat-label">EXPERIENCE</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="mailto:ragotjohn25@gmail.com?subject=Hello&body=Hi%20there,%20I%20wanted%20to%20reach%20out." class="btn-primary" style="font-size:.75rem;padding:.7rem 1.5rem;">EMAIL ME →</a>
+        <a href="https://www.linkedin.com/in/john-ragot-6b6041386?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="btn-outline" style="font-size:.75rem;padding:.7rem 1.5rem;">LINKEDIN</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <div class="section-tag">02 / TECHNICAL SKILLS</div>
+  <h2>TOOLS OF THE <span style="color:var(--accent)">CRAFT</span></h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">⚡</div>
+      <h4>ENGINEERING & CIRCUITS</h4>
+      <div class="skill-pills">
+        <span class="pill">Circuit Design & Analysis</span>
+        <span class="pill">Class A / B Amplifiers</span>
+        <span class="pill">Transistor Circuits</span>
+        <span class="pill">PWM & Motor Control</span>
+        <span class="pill">Solar Power Systems</span>
+        <span class="pill">Control & Instrumentation</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">💻</div>
+      <h4>SOFTWARE & SIMULATION</h4>
+      <div class="skill-pills">
+        <span class="pill">Proteus</span>
+        <span class="pill">TinkerCAD</span>
+        <span class="pill">Arduino IDE</span>
+        <span class="pill">MATLAB</span>
+        <span class="pill">C / C++</span>
+        <span class="pill">HTML · CSS · JS</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🤖</div>
+      <h4>HARDWARE & EMBEDDED</h4>
+      <div class="skill-pills">
+        <span class="pill">Arduino Systems</span>
+        <span class="pill">Sensor Integration</span>
+        <span class="pill">Microcontroller Automation</span>
+        <span class="pill">LED Indicator Systems</span>
+        <span class="pill">Real-time Data Acquisition</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🧠</div>
+      <h4>RESEARCH INTERESTS</h4>
+      <div class="skill-pills">
+        <span class="pill">Renewable Energy</span>
+        <span class="pill">Power Electronics</span>
+        <span class="pill">Smart Infrastructure</span>
+        <span class="pill">Robotics & Automation</span>
+        <span class="pill">AI in Engineering</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-tag">03 / PROJECTS</div>
+  <h2>WHAT I'VE <span style="color:var(--accent)">BUILT</span></h2>
+  <div class="projects-grid">
+
+   <div class="project-card reveal" id="project1">
+  <div class="project-img">
+    <div class="project-img-placeholder" style="
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('project1.jpeg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 200px; /* Adjust height as needed */
+        color: white;">
+ 
+    </div>
+    <div class="project-img-number" id="poject1">01</div>
+    <span class="project-img-tag">HARDWARE</span>
+  </div>
+  <div class="project-body">
+    <h3>SMART HYBRID BVD TESTER</h3>
+    <p>A Breakdown Voltage Tester for electrical insulation testing, combining analog and digital measurement with Arduino-based real-time data acquisition, voltage step-up circuits, and automated fault detection.</p>
+    <div class="project-tags">
+      <span class="project-tag">Arduino</span>
+      <span class="project-tag">Proteus</span>
+      <span class="project-tag">High-Voltage</span>
+      <span class="project-tag">Embedded C</span>
+      <span class="project-tag">Fault Detection</span>
+    </div>
+  </div>
+</div>
+
+<div class="project-card reveal" id="project2">
+  <div class="project-img">
+    <div class="project-img-placeholder" style="
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('project2.jpeg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        color: white;">
+    </div>
+    <div class="project-img-number">02</div>
+    <span class="project-img-tag">SMART CITY</span>
+  </div>
+  <div class="project-body">
+    <h3>SMART TRAFFIC LIGHT SYSTEM</h3>
+    <p>An Arduino-based intelligent traffic control system using dynamic signal timing and embedded C logic. Features LED simulation, sensor-extensible vehicle detection, and a proposed inter-junction smart city coordination concept.</p>
+    <div class="project-tags">
+      <span class="project-tag">Arduino</span>
+      <span class="project-tag">Embedded C</span>
+      <span class="project-tag">Proteus</span>
+      <span class="project-tag">IoT Concept</span>
+    </div>
+  </div>
+</div>
+
+<div class="project-card reveal" id="project3">
+  <div class="project-img">
+    <div class="project-img-placeholder" style="
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('project3.jpeg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        color: white;">
+     
+    </div>
+    <div class="project-img-number">03</div>
+    <span class="project-img-tag">ROBOTICS</span>
+  </div>
+  <div class="project-body">
+    <h3>TEMPERATURE-CONTROLLED FAN</h3>
+    <p>An automated fan control system built within the Robotics Club, using temperature sensor feedback and microcontroller logic to optimize power consumption and ensure reliable operation under varying thermal conditions.</p>
+    <div class="project-tags">
+      <span class="project-tag">Sensor Fusion</span>
+      <span class="project-tag">Microcontroller</span>
+      <span class="project-tag">Power Efficiency</span>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- INVOLVEMENT -->
+<section id="involvement" class="involvement-section">
+  <div class="section-tag">04 / LEADERSHIP & INVOLVEMENT</div>
+  <h2>MORE THAN <span style="color:var(--accent)">AN ENGINEER</span></h2>
+  <div class="involvement-list">
+    <div class="involvement-item reveal">
+      <span class="inv-num">01</span>
+      <div class="inv-body">
+        <h4>IEEE YESIST12 AMBASSADOR</h4>
+        <p>Representing the Kenya Section (TUM) on the global YESIST12 platform for young innovators — driving student registrations and abstract submissions. Referral ID: JE062</p>
+      </div>
+      <div class="inv-dot"></div>
+    </div>
+    <div class="involvement-item reveal">
+      <span class="inv-num">02</span>
+      <div class="inv-body">
+        <h4>IEEE IES EAST AFRICA AMBASSADOR — 2026</h4>
+        <p>Ambassador for the Industrial Electronics Society's East Africa Industrial Innovation Summit 2026, connecting students to industrial engineering networks across the region.</p>
+      </div>
+      <div class="inv-dot"></div>
+    </div>
+    <div class="involvement-item reveal">
+      <span class="inv-num">03</span>
+      <div class="inv-body">
+        <h4>IEEE STUDENT BRANCH MEMBER</h4>
+        <p>Active member of the IEEE Student Branch at Technical University of Mombasa, engaging in technical workshops, seminars, and peer learning initiatives.</p>
+      </div>
+      <div class="inv-dot"></div>
+    </div>
+    <div class="involvement-item reveal">
+      <span class="inv-num">04</span>
+      <div class="inv-body">
+        <h4>ROBOTICS CLUB — TUM</h4>
+        <p>Member of the Robotics Club, building and testing autonomous systems, participating in collaborative engineering challenges and design sprints.</p>
+      </div>
+      <div class="inv-dot"></div>
+    </div>
+    <div class="involvement-item reveal">
+      <span class="inv-num">05</span>
+      <div class="inv-body">
+        <h4>ENACTUS MEMBER</h4>
+        <p>Part of the Enactus chapter at TUM, developing innovation and entrepreneurship projects that apply engineering thinking to solve social challenges in the community.</p>
+      </div>
+      <div class="inv-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">05 / CONTACT</div>
+  <h2>LET'S <span style="color:var(--accent)">CONNECT</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>OPEN TO OPPORTUNITIES,<br>COLLABORATIONS & MENTORSHIP</h3>
+      <p>Whether you're looking to collaborate on an engineering project, need a motivated intern, or want to connect on IEEE initiatives — I'm always open to meaningful conversations.</p>
+      <div class="contact-links">
+        <a href="mailto:ragotjohn25@gmail.com?subject=Hello&body=Hi%20there,%20I%20wanted%20to%20reach%20out." class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          ragotjohn25@gmail.com
+        </a>
+        <a href="tel:+254712529750" class="contact-link">
+          <span class="contact-link-icon">📞</span>
+          +254 712 529 750
+        </a>
+        <a href="https://www.linkedin.com/in/john-ragot-6b6041386?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="contact-link">
+          <span class="contact-link-icon">🔗</span>
+          LinkedIn Profile
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">📍</span>
+          Mombasa, Kenya — TUM Campus
+        </a>
+      </div>
+    </div>
+   <form action="https://formspree.io/f/mgopbdqq" method="POST">
+  <div class="contact-form-area reveal">
+    <div class="form-row">
+      <div class="form-group">
+        <label>YOUR NAME</label>
+        <input type="text" name="name" placeholder="e.g. Jane Mwangi">
+      </div>
+      <div class="form-group">
+        <label>YOUR EMAIL</label>
+        <input type="email" name="email" placeholder="jane@example.com">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>SUBJECT</label>
+      <input type="text" name="subject" placeholder="Project collaboration, Internship, IEEE...">
+    </div>
+    <div class="form-group">
+      <label>MESSAGE</label>
+      <textarea name="message" placeholder="Tell me about what you're working on..."></textarea>
+    </div>
+    <button type="submit" class="btn-primary" style="width:fit-content;border:none;font-size:.8rem;cursor:pointer;">SEND MESSAGE →</button>
+  </div>
+</form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 JOHN OMONDI RAGOT — BSc ELECTRICAL & ELECTRONIC ENGINEERING</span>
+  <span style="display:flex;gap:.5rem;align-items:center;">
+    <span style="width:6px;height:6px;border-radius:50%;background:var(--accent3);box-shadow:0 0 6px var(--accent3);"></span>
+    TECHNICAL UNIVERSITY OF MOMBASA · KENYA
+  </span>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a, button, .skill-card, .project-card, .involvement-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px'; cursor.style.height = '20px';
+      ring.style.width = '55px'; ring.style.height = '55px'; ring.style.opacity = '0.8';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px'; cursor.style.height = '12px';
+      ring.style.width = '36px'; ring.style.height = '36px'; ring.style.opacity = '0.5';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 150) current = s.id; });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#'+current ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
+</html>
